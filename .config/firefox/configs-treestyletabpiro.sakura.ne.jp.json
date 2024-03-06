@@ -1,0 +1,28 @@
+{
+  "__ConfigsMigration__userValeusSameToDefaultAreCleared": true,
+  "chunkedUserStyleRules0": "LyogQ1NTIHZhcmlhYmxlcwogICBHZW5lcmF0ZWQgYnkgJ3dhbCcgICovCiAgIDpyb290IHsKICAgIC0td2FsbHBhcGVyOiB1cmwoIk5vbmUiKTsKCiAgICAvKiBTcGVjaWFsICAqLwogICAgLS1iYWNrZ3JvdW5kOiAjMzAzNDQ2OwogICAgLS1mb3JlZ3JvdW5kOiAjQzZEMEY1OwogICAgLS1jdXJzb3I6ICNDNkQwRjU7CgogICAgLyogQ29sb3JzICAqLwogICAgLS1jb2xvcjA6ICM1MTU3NkQ7CiAgICAtLWNvbG9yMTogI0U3ODI4NDsKICAgIC0tY29sb3IyOiAjQTZEMTg5OwogICAgLS1jb2xvcjM6ICNFNUM4OTA7CiAgICAtLWNvbG9yNDogIzhDQUFFRTsKICAgIC0tY29sb3I1OiAjRjRCOEU0OwogICAgLS1jb2xvcjY6ICM4MUM4QkU7CiAgICAtLWNvbG9yNzogI0I1QkZFMjsKICAgIC0tY29sb3I4OiAjNjI2ODgwOwogICAgLS1jb2xvcjk6ICNFNzgyODQ7CiAgICAtLWNvbG9yMTA6ICNBNkQxODk7CiAgICAtLWNvbG9yMTE6ICNFNUM4OTA7CiAgICAtLWNvbG9yMTI6ICM4Q0FBRUU7CiAgICAtLWNvbG9yMTM6ICNGNEI4RTQ7CiAgICAtLWNvbG9yMTQ6ICM4MUM4QkU7CiAgICAtLWNvbG9yMTU6ICNBNUFEQ0U7Cn0KCgoKLyogSGlkZSAudHdpc3R5IGFuZCBhZGp1c3QgbWFyZ2lucyBzbyBmYXZpY29ucyBoYXZlIDdweCBvbiBsZWZ0LiAqLwoudGFiIC50d2lzdHkgewogIHZpc2liaWxpdHk6IGhpZGRlbjsKICBtYXJnaW4tbGVmdDogLThweDsKfQoKLyogUHVzaCB0YWIgbGFiZWxzIHNsaWdodGx5IHRvIHRoZSByaWdodCBzbyB0aGV5J3JlIGNvbXBsZXRlbHkgaGlkZGVuIGluIGNvbGxhcHNlZCBzdGF0ZSAqLwoudGFiIC5sYWJlbCB7CiAgbWFyZ2luLWxlZnQ6IDEycHg7Cn0KLyogSGlkZSAnbmV3IHRhYicgYnV0dG9uLiAqLwoubmV3dGFiLWJ1dHRvbiB7CiAgZGlzcGxheTogbm9uZTsKfQoKOnJvb3QsICNiYWNrZ3JvdW5kIHsKYmFja2dyb3VuZDogdmFyKC0tYmFja2dyb3VuZCkgIWltcG9ydGFudDsKfQoKLyogVGFicyAqLwoudGFiIHsKaGVpZ2h0OiAyNXB4Owpib3JkZXItYm90dG9tOiAwcHggc29saWQ7CmJhY2tncm91bmQ6IHZhcigtLWFjY2VudC0zKSAhaW1wb3J0YW50Owp9Cgp0YWItaXRlbTpub3QoLmZhdmljb25pemVkKTpub3QoLmxvYWRpbmcpIHRhYi1mYXZpY29uIHsKbWFyZ2luLXRvcDogM3B4Owp9CgoudGFiOm5vdCguYWN0aXZlKTpob3ZlciwKLmFmdGVyLXRhYnMgYnV0dG9uOmhvdmVyIHsKY29sb3I6IHZhcigtLWNvbG9yMCkgIWltcG9ydGFudDsKYmFja2dyb3VuZDogdmFyKC0tY29sb3I0KSAhaW1wb3J0YW50Owp9CgoudGFiLmFjdGl2ZXsKY29sb3I6IHZhcigtLWNvbG9yMCkgIWltcG9ydGFudDsKYmFja2dyb3VuZDogdmFyKC0tY29sb3I1KSAhaW1wb3J0YW50Owp9Cgo6cm9vdCAudGFiIC5oaWdobGlnaHRlcjo6YmVmb3JlIHsKICBkaXNwbGF5OiBub25lOwp9Cg==",
+  "configsVersion": 27,
+  "iconColor": "dark",
+  "notifiedFeaturesVersion": 9,
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-contextMenu",
+    "section-advanced",
+    "section-debug"
+  ],
+  "showExpertOptions": true,
+  "sidebarPosition": 1,
+  "style": "none",
+  "syncDevices": {
+    "device-1666271114251-38867": {
+      "id": "device-1666271114251-38867",
+      "name": "Firefox on macOS",
+      "icon": "device-desktop",
+      "timestamp": 1683361669727
+    }
+  },
+  "userStyleRules": "",
+  "userStyleRulesFieldHeight": "756px",
+  "userStyleRulesFieldTheme": "dracula",
+  "warnOnCloseTabs": false
+}

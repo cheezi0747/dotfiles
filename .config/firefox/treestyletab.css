@@ -1,0 +1,44 @@
+/* Hide .twisty and adjust margins so favicons have 7px on left. */
+.tab .twisty {
+  visibility: hidden;
+  margin-left: -8px;
+}
+
+/* Push tab labels slightly to the right so they're completely hidden in collapsed state */
+.tab .label {
+  margin-left: 12px;
+}
+/* Hide 'new tab' button. */
+.newtab-button {
+  display: none;
+}
+
+:root, #background {
+background: var(--color0) !important;
+}
+
+/* Tabs */
+.tab {
+height: 25px;
+border-bottom: 0px solid;
+background: var(--accent-0) !important;
+}
+
+tab-item:not(.faviconized):not(.loading) tab-favicon {
+margin-top: 3px;
+}
+
+.tab:not(.active):hover,
+.after-tabs button:hover {
+color: var(--color0) !important;
+background: var(--color4) !important;
+}
+
+.tab.active{
+color: var(--color0) !important;
+background: var(--color5) !important;
+}
+
+:root .tab .highlighter::before {
+  display: none;
+}

@@ -1,0 +1,90 @@
+:root {
+    --background: #303446;
+    --foreground: #C6D0F5;
+    --cursor: #C6D0F5;
+    
+    --color0: #303446;
+    --color1: #E78284;
+    --color2: #A6D189;
+    --color3: #E5C890;
+    --color4: #8CAAEE;
+    --color8: #626880;
+    --color10: #A6D189;
+    --color11: #E5C890;
+    --color12: #8CAAEE;
+    --color13: #F4B8E4;
+    --color14: #81C8BE;
+    --color15: #A5ADCE;
+
+    --accent-1: var(--color4);
+    --accent-2: var(--color2);
+    --accent-3: var(--color1);
+
+    --grey-10: var(--foreground);
+    --grey-20: var(--foreground);
+    --grey-30: var(--foreground);
+    --grey-40: var(--foreground);
+    --grey-50: var(--background);
+    --grey-60: var(--background);
+    --grey-70: var(--background);
+    --grey-80: var(--background);
+    --grey-90: var(--background);
+
+    --card-outline-color: var(--in-content-box-border-color)!important;
+    --cm-background: var(--tone-8)!important;
+    --in-content-border-color: var(--tone-6)!important;
+    --in-content-border-focus: var(--accent-1)!important;
+    --in-content-border-highlight: var(--accent-1)!important;
+    --in-content-box-background: var(--color0)!important;
+    --in-content-box-background-active: var(--tone-6)!important;
+    --in-content-box-background-hover: var(--tone-6)!important;
+    --in-content-box-background-odd: var(--color15);
+    --in-content-box-border-color: var(--tone-5)!important;
+    --in-content-category-header-background: var(--tone-8)!important;
+    --in-content-category-text: var(--tone-4)!important;
+    --in-content-category-text-active: var(var(--grey-90))
+    --in-content-category-text-selected: var(--accent-1)!important;
+    --in-content-category-text-selected-active: var(--color12);
+    --in-content-dark-header-background: var(--tone-9)!important;
+    --in-content-item-selected: var(--tone-8)!important;
+    --in-content-link-color: var(--accent-2)!important;
+    --in-content-link-color-active: var(--color12);
+    --in-content-link-color-hover: var(--accent-2)!important;
+    --in-content-link-color-visited: var(--color4);
+    --in-content-page-background: var(--tone-7)!important;
+    --in-content-page-color: var(--tone-4)!important;
+    --in-content-primary-button-background: var(--accent-2)!important;
+    --in-content-primary-button-background-active: var(--accent-3)!important;
+    --in-content-primary-button-background-hover: var(--accent-3)!important;
+    --in-content-selected-text: var(--tone-1)!important;
+    --in-content-selected-text-background: var(--color13);
+    --in-content-table-border-dark-color: var(--tone-7)!important;
+    --in-content-table-header-background: var(--accent-2)!important;
+    --in-content-text-color: var(--tone-3)!important;
+    --secure-connection-color: var(--accent-1);
+    --selected-icon-fill-color: var(--tone-2)!important;
+    --tab-background-color: var(--tone-9)!important;
+    --tab-color: var(--in-content-selected-text);
+    --tab-line-selected-color: var(--accent-2)!important;
+
+    --theme-highlight-blue: var(--color4);
+    --theme-highlight-bluegrey: var(--color8:);
+    --theme-highlight-green: var(--color2);
+    --theme-highlight-purple: var(--color13);
+    --theme-highlight-red: var(--color1);
+    --theme-highlight-yellow: var(--color3);
+
+    --theme-selection-background: var(--accent-2)!important;
+    --theme-selection-background-hover: var(--accent-1)!important;
+
+
+    --tone-1: var(--grey-10);
+    --tone-2: var(--grey-20);
+    --tone-3: var(--grey-30);
+    --tone-4: var(--grey-40);
+    --tone-5: var(--grey-50);
+    --tone-6: var(--grey-60);
+    --tone-7: var(--grey-70);
+    --tone-8: var(--grey-80);
+    --tone-9: var(--grey-90);
+}

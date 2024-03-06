@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>base_currencies</key>
+	<string>USD, EUR, SEK</string>
+	<key>decimal_separator</key>
+	<string>comma</string>
+	<key>number_output_format</key>
+	<string>space_comma</string>
+	<key>timezone</key>
+	<string>Europe/Stockholm</string>
+	<key>vat_value</key>
+	<string>25%</string>
+</dict>
+</plist>
