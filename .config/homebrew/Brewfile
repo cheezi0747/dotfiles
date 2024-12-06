@@ -46,7 +46,7 @@ brew "mysql@8.4"
 brew "nano"
 brew "neofetch"
 brew "neovim"
-brew "node"s
+brew "node"
 brew "php"
 brew "pinentry-mac"
 brew "pipx"
