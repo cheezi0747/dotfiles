@@ -1,0 +1,193 @@
+15,17c15,17
+<     if [[ $alfred_debug == "1" ]]; then
+<         echo >&2 $1
+<     fi
+---
+> 	if [[ $alfred_debug == "1" ]]; then
+> 		echo >&2 $1
+> 	fi
+22a23,52
+> # Check if alfred has full disk access.
+> if [[ "$1" != "--ignore-full-disk-check" && ! -r ~/Library/Messages/chat.db ]]; then
+> 	echo '{
+> 	  "items": [
+> 	    {
+> 	      "type": "default",
+> 	      "valid": true,
+> 	      "icon": {"path": "icon.png"},
+> 	      "subtitle": "Launch System Preferences and turn this on.",
+> 	      "title": "Full Disk Access Required for Alfred",
+> 		  "variables": {
+> 			"launch_full_disk": 1
+> 		  }
+> 	    },
+> 	    {
+> 	      "type": "default",
+> 	      "valid": true,
+> 	      "icon": {"path": "icon.png"},
+> 	      "subtitle": "See a short explanation of why full disk access is required.",
+> 	      "title": "Why is full disk access required?",
+> 		  "variables": {
+> 			"launch_url": 1,
+> 			"url": "https://github.com/thebitguru/alfred-simple-2fa-paste/wiki/Full-Disk-Access"
+> 		  }
+> 	    }
+> 	  ]
+> 	}'
+> 	exit 1
+> fi
+> 
+25,27c55,57
+< if [[ "$1" == "--test" ]]; then
+<     echo "Running in test mode."
+<     response=$(cat test_messages.txt)
+---
+> if [[ "$2" == "--test" ]]; then
+> 	echo "Running in test mode."
+> 	response=$(cat test_messages.txt)
+29c59
+<     debug_text "Lookback minutes: $lookBackMinutes"
+---
+> 	debug_text "Lookback minutes: $lookBackMinutes"
+31c61
+<     sqlQuery="select
+---
+> 	sqlQuery="select
+47c77,79
+< 			message.text glob '*[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]-[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]*'
+---
+> 			message.text glob '*[0-9][0-9][0-9]*'
+> 			or message.text glob '*[0-9][0-9][0-9][0-9]*'
+> 			or message.text glob '*[0-9][0-9][0-9][0-9][0-9]*'
+48a81,83
+> 			or message.text glob '*[0-9][0-9][0-9]-[0-9][0-9][0-9]*'
+> 			or message.text glob '*[0-9][0-9][0-9][0-9][0-9][0-9][0-9]*'
+> 			or message.text glob '*[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]*'
+50,51c85,86
+< 		and datetime(message.date / 1000000000 + strftime('%s', '2001-01-01'), 'unixepoch', 'localtime')
+< 				>= datetime('now', '-$lookBackMinutes minutes', 'localtime')
+---
+> 		  and datetime(message.date / 1000000000 + strftime('%s', '2001-01-01'), 'unixepoch', 'localtime')
+> 		          >= datetime('now', '-$lookBackMinutes minutes', 'localtime')
+55c90
+<     debug_text "SQL Query: $sqlQuery"
+---
+> 	debug_text "SQL Query: $sqlQuery"
+57,58c92,93
+<     response=$(sqlite3 ~/Library/Messages/chat.db -json "$sqlQuery" ".exit")
+<     debug_text "SQL Results: '$response'"
+---
+> 	response=$(sqlite3 ~/Library/Messages/chat.db -json "$sqlQuery" ".exit")
+> 	debug_text "SQL Results: '$response'"
+62c97,109
+<     output+="{\"items\":[{\"type\":\"default\", \"valid\": \"false\", \"icon\": {\"path\": \"icon.png\"}, \"arg\": \"\", \"subtitle\": \"Searched messages in the last $lookBackMinutes minutes.\", \"title\": \"No codes found\"}]}"
+---
+> 	output+='{
+> 		"rerun": 1,
+> 		"items": [
+> 			{
+> 				"type": "default", 
+> 				"valid": "false", 
+> 				"icon": {"path": "icon.png"}, 
+> 				"arg": "", 
+> 				"subtitle": "Searched messages in the last '"$lookBackMinutes"' minutes.", 
+> 				"title": "No codes found"
+> 			}
+> 		]
+> 	}'
+64,72c111,119
+<     while read line; do
+<         debug_text "Line: $line"
+<         if [[ $line =~ $ROW_REGEX ]]; then
+<             sender=${BASH_REMATCH[2]}
+<             message_date=${BASH_REMATCH[4]}
+<             message=${BASH_REMATCH[5]}
+<             debug_text " Found sender: $sender"
+<             debug_text " Found message_date: $message_date"
+<             debug_text " Found message: $message"
+---
+> 	while read line; do
+> 		debug_text "Line: $line"
+> 		if [[ $line =~ $ROW_REGEX ]]; then
+> 			sender=${BASH_REMATCH[2]}
+> 			message_date=${BASH_REMATCH[4]}
+> 			message=${BASH_REMATCH[5]}
+> 			debug_text " Found sender: $sender"
+> 			debug_text " Found message_date: $message_date"
+> 			debug_text " Found message: $message"
+74,75c121,122
+<             remaining_message=$message
+<             message_quoted=${message//[\"]/\\\"}
+---
+> 			remaining_message=$message
+> 			message_quoted=${message//[\"]/\\\"}
+77,80c124,127
+<             while [[ $remaining_message =~ $NUMBER_MATCH_REGEX ]]; do
+<                 debug_text " -- Message: $message"
+<                 debug_text " -- Found-1 ${BASH_REMATCH[1]}"
+<                 code=${BASH_REMATCH[1]}
+---
+> 			while [[ $remaining_message =~ $NUMBER_MATCH_REGEX ]]; do
+> 				debug_text " -- Message: $message"
+> 				debug_text " -- Found-1 ${BASH_REMATCH[1]}"
+> 				code=${BASH_REMATCH[1]}
+82,96c129,143
+<                 if [[ -z "$output" ]]; then
+<                     output='{"items":['
+<                 else
+<                     output+=','
+<                     if [[ "$2" == "--newline" ]]; then
+<                         output+="\n"
+<                     fi
+<                 fi
+<                 # >&2 echo "Original $message"
+<                 # >&2 echo "Quoted $message_quoted"
+<                 # >&2 echo
+<                 item="{\"type\":\"default\", \"icon\": {\"path\": \"icon.png\"}, \"arg\": \"$code\", \"subtitle\": \"${message_date}: ${message_quoted}\", \"title\": \"$code\"}"
+<                 # >&2 echo $item
+<                 output+=$item
+<                 # >&2 echo "New output: $output"
+---
+> 				if [[ -z "$output" ]]; then
+> 					output='{"rerun": 1, "items":['
+> 				else
+> 					output+=','
+> 					if [[ "$3" == "--newline" ]]; then
+> 						output+="\n"
+> 					fi
+> 				fi
+> 				# >&2 echo "Original $message"
+> 				# >&2 echo "Quoted $message_quoted"
+> 				# >&2 echo
+> 				item="{\"type\":\"default\", \"icon\": {\"path\": \"icon.png\"}, \"arg\": \"$code\", \"subtitle\": \"${message_date}: ${message_quoted}\", \"title\": \"$code\"}"
+> 				# >&2 echo $item
+> 				output+=$item
+> 				# >&2 echo "New output: $output"
+98,106c145,153
+<                 # Trim to the remaining message
+<                 # >&2 echo "REMATCH: ${BASH_REMATCH[0]}"
+<                 # >&2 echo "Before truncating message: $remaining_message"
+<                 remaining_message=${remaining_message##*${BASH_REMATCH[0]}}
+<                 # >&2 echo "Remaining message: $remaining_message"
+<             done
+<         else
+<             echo >&2 "No match for $line"
+<         fi
+---
+> 				# Trim to the remaining message
+> 				# >&2 echo "REMATCH: ${BASH_REMATCH[0]}"
+> 				# >&2 echo "Before truncating message: $remaining_message"
+> 				remaining_message=${remaining_message##*${BASH_REMATCH[0]}}
+> 				# >&2 echo "Remaining message: $remaining_message"
+> 			done
+> 		else
+> 			echo >&2 "No match for $line"
+> 		fi
+108,110c155,157
+<         continue
+<     done <<<"$response"
+<     output+=']}'
+---
+> 		continue
+> 	done <<<"$response"
+> 	output+=']}'
