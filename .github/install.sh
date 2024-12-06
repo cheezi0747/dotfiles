@@ -6,10 +6,13 @@ set -e
 # Clone the dotfiles repository
 clone_dotfiles_repo() {
     echo "Cloning dotfiles repository..."
-    git clone --bare https://github.com/cheezi0747/dotfiles.git $HOME/.dotfiles
+    git clone --bare https://github.com/yourusername/dotfiles.git $HOME/.dotfiles
     git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
     git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
     echo "Dotfiles repository cloned and checked out."
+    # Set up Zsh configuration directory after cloning
+    echo "Setting up Zsh configuration directory..."
+    echo export ZDOTDIR=~/.config/zsh | sudo tee -a /etc/zshenv
 }
 
 # Install xCode CLI tools
@@ -37,14 +40,14 @@ install_xcode() {
 install_oh_my_zsh() {
     echo "Installing Oh My Zsh..."
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        ZSH="$HOME/.config/zsh/oh-my-zsh" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
         echo "Oh My Zsh already installed."
     fi
 
     # Install Powerlevel10k
     echo "Installing Powerlevel10k..."
-    local theme_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+    local theme_dir="$HOME/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k"
     if [ ! -d "$theme_dir" ]; then
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir"
     else
@@ -53,7 +56,7 @@ install_oh_my_zsh() {
 
     # Install ZSH Autosuggestions
     echo "Installing ZSH Autosuggestions..."
-    local autosuggestions_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    local autosuggestions_dir="$HOME/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions"
     if [ ! -d "$autosuggestions_dir" ]; then
         git clone https://github.com/zsh-users/zsh-autosuggestions "$autosuggestions_dir"
     else
@@ -62,12 +65,16 @@ install_oh_my_zsh() {
 
     # Install ZSH Syntax Highlighting
     echo "Installing ZSH Syntax Highlighting..."
-    local syntax_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    local syntax_dir="$HOME/.config/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     if [ ! -d "$syntax_dir" ]; then
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$syntax_dir"
     else
         echo "ZSH Syntax Highlighting already installed."
     fi
+
+    # Reload Zsh configuration
+    echo "Reloading Zsh configuration..."
+    source $HOME/.config/zsh/.zshrc
 }
 
 # Install Brew
