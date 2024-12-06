@@ -78,12 +78,5 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 #Set wallpaper
 echo "Setting Wallpaper"
-osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/Users/cheezi-home/Pictures/apple-colors-big-4k-frappe.png\" as POSIX file"
-
-#Start things
-echo "Starting Services (grant permissions)..."
-yabai --start-service
-skhd --start-service
-brew services start sketchybar
-
-echo "Add sudoer manually:\n '$(whoami) ALL = (root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | awk "{print \$1;}") $(which yabai) --load-sa' to '/private/etc/sudoers.d/yabai'"
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/Users/cheezi/Pictures/wallpapers/apple-colors-big-4k-frappe.png\" as POSIX file"
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$HOME/Pictures/wallpapers/apple-colors-big-4k-frappe.png\" as POSIX file"
