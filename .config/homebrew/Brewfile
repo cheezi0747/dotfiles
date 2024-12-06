@@ -2,7 +2,6 @@ tap "daviderestivo/fortune-mod"
 tap "dimentium/autoraise"
 tap "felixkratz/formulae"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "khanhas/tap"
@@ -47,7 +46,7 @@ brew "mysql@8.4"
 brew "nano"
 brew "neofetch"
 brew "neovim"
-brew "node"
+brew "node"s
 brew "php"
 brew "pinentry-mac"
 brew "pipx"
@@ -77,8 +76,8 @@ cask "qmk-toolbox"
 cask "sf-symbols"
 cask "shortcat"
 cask "spotify"
-mas "Bitwarden", id: 1352778147
-mas "Duplicate Photos Finder", id: 984929789
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Paint S", id: 736473980
-mas "Tailscale", id: 1475387142
+#mas "Bitwarden", id: 1352778147
+#mas "Duplicate Photos Finder", id: 984929789
+#mas "Microsoft Remote Desktop", id: 1295203466
+#mas "Paint S", id: 736473980
+#mas "Tailscale", id: 1475387142
