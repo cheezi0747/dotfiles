@@ -18,9 +18,13 @@ export GEM_HOME="$HOME/.local/share/gem"
 export NPM_CONFIG_PREFIX="$HOME/.local/share/npm"
 export GROOVY_HOME="$HOME/.local/share/groovy"
 export GNUPGHOME="$HOME/.local/share/gnupg"
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH="/usr/bin:/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export HOMEBREW_NO_ENV_HINTS=1
+
+# Set java home to Java 21 if available
+if command -v java &>/dev/null; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+fi
 
 # Zsh Options
 setopt NO_NOTIFY
