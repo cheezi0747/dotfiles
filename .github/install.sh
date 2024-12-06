@@ -147,8 +147,8 @@ set_wallpaper() {
 }
 
 # Main
-clone_dotfiles_repo
 install_xcode
+clone_dotfiles_repo
 install_oh_my_zsh
 install_brew
 install_homebrew_packages
