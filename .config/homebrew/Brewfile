@@ -70,7 +70,7 @@ cask "gitify"
 cask "jordanbaird-ice"
 cask "openscad"
 cask "qmk-toolbox"
-cask "sf-symbols"
+#cask "sf-symbols"
 cask "spotify"
 cask "iterm2"
 #mas "Bitwarden", id: 1352778147
