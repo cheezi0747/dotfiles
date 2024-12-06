@@ -1,16 +1,20 @@
 #!/bin/bash
 
-# Fail immediately if a command exits with a non-zero status
+# Faily immediately if a command exits with a non-zero status
 set -e
 
 # Clone the dotfiles repository
 clone_dotfiles_repo() {
     echo "Cloning dotfiles repository..."
-    git clone --bare https://github.com/cheezi0747/dotfiles.git $HOME/.dotfiles
-    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
-    echo "Dotfiles repository cloned and checked out."
-    # Set up Zsh configuration directory after cloning
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        git clone --bare https://github.com/cheezi0747/dotfiles.git $HOME/.dotfiles
+        git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
+        git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+        echo "Dotfiles repository cloned and checked out."
+        # Set up Zsh configuration directory after cloning
+    else
+        echo "Dotfiles already cloned."
+    fi
     echo "Setting up Zsh configuration directory..."
     echo export ZDOTDIR=~/.config/zsh | sudo tee -a /etc/zshenv
 }
