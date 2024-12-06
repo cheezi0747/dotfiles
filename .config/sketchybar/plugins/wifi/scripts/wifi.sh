@@ -21,11 +21,9 @@ render_popup() {
 }
 
 update() {
-	CURRENT_WIFI="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)"
-	SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
-	CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
-	# read in out <<<$(ifstat -w -n -z -i en0 | awk 'NR>2 {print $1, $2}')
-	# ifstat -w -S -n -z -i en0
+	CURRENT_WIFI="$(system_profiler SPAirPortDataType)"
+	SSID="$(echo "$CURRENT_WIFI" | awk -F': ' '/Current Network Information:/ {getline;print $1}' | grep -o '.*:' | sed -e 's/^[ \t]*//' | sed 's/:$//')"
+	CURR_TX="$(echo "$CURRENT_WIFI" | awk -F': ' '/Transmit Rate:/ {print $2}')"
 
 	args=()
 

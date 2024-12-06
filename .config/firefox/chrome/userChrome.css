@@ -17,6 +17,16 @@
   /* left | center | right */
 }
 
+#urlbar-container {
+  background-color: var(--color0) !important;
+  border: none !important;
+}
+
+.urlbar-input {
+  background-color: var(--color0) !important;
+  border: none !important;
+}
+
 /* remove three dots button in url bar */
 #page-action-buttons {
   display: none !important;
@@ -78,10 +88,14 @@
   margin-bottom: -1px !important;
 }
 
+.urlbar-input-container {
+  background-color: var(--color0) !important;
+  border: none !important;
+  color: var(--color15) !important;
+}
 
 #urlbar-container {
   background-color: var(--color0) !important;
-
 }
 
 #urlbar-container hover {
@@ -114,11 +128,10 @@
 
 .urlbarView:not(.megabar) {
   border: 0px solid red !important;
-
 }
 
 .urlbarView-body-inner {
-  border: none !important
+  border: none !important;
 }
 
 .urlbarView-row-inner {
@@ -129,12 +142,12 @@
   border-top: none !important;
 }
 
-#urlbar[breakout][breakout-extend]>#urlbar-background {
+#urlbar[breakout][breakout-extend] > #urlbar-background {
   box-shadow: none !important;
   border: none !important;
 }
 
-#urlbar>#urlbar-background {
+#urlbar > #urlbar-background {
   border: none !important;
   box-shadow: none !important;
 }
@@ -162,7 +175,6 @@
  *
  ***************************************************************************/
 
-
 /* Hide the hamburger button by default */
 #PanelUI-menu-button {
   transition: 300ms !important;
@@ -172,7 +184,6 @@
   -moz-margin-end: -26px !important;
   /* Hide icon by offsetting it */
 }
-
 
 #tracking-protection-icon-container {
   display: none !important;
@@ -200,7 +211,7 @@
 
 /* Show the reload button on navbar hover or page load (animation/stop button) */
 #nav-bar:hover #reload-button,
-#stop-reload-button[animate]>#reload-button:not([displaystop]) {
+#stop-reload-button[animate] > #reload-button:not([displaystop]) {
   transition: 300ms !important;
   /* Animate icon showing */
   opacity: 1 !important;
@@ -216,10 +227,17 @@
   color: #282a36 !important;
 }
 
-:root:not([uidensity="compact"]):not([chromehidden~="toolbar"]) #nav-bar[brighttext]>#PanelUI-button {
-  border-image-source: linear-gradient(transparent 0px, var(--lwt-toolbar-vertical-separator, rgba(40, 42, 54, 0.25)) 4px, var(--lwt-toolbar-vertical-separator, rgba(40, 42, 54, 0.18)) calc(100% - 4px), transparent calc(100% - 4px)) !important;
+:root:not([uidensity="compact"]):not([chromehidden~="toolbar"])
+  #nav-bar[brighttext]
+  > #PanelUI-button {
+  border-image-source: linear-gradient(
+    transparent 0px,
+    var(--lwt-toolbar-vertical-separator, rgba(40, 42, 54, 0.25)) 4px,
+    var(--lwt-toolbar-vertical-separator, rgba(40, 42, 54, 0.18))
+      calc(100% - 4px),
+    transparent calc(100% - 4px)
+  ) !important;
 }
-
 
 /****************************
  *     _____     _         
@@ -241,7 +259,7 @@
 }
 
 #nav-bar:hover #new-tab-button,
-#stop-new-tab-button[animate]>#new-tab-button:not([displaystop]) {
+#stop-new-tab-button[animate] > #new-tab-button:not([displaystop]) {
   transition: 300ms !important;
   /* Animate icon showing */
   opacity: 1 !important;
@@ -250,8 +268,6 @@
   /* Use initial margins to show the icon */
   -mox-padding-right: 10px !important;
 }
-
-
 
 #nav-bar-overflow-button {
   transition: 300ms !important;
@@ -263,7 +279,8 @@
 }
 
 #nav-bar:hover #nav-bar-overflow-button,
-#stop-nav-bar-overflow-button[animate]>#nav-bar-overflow-button:not([displaystop]) {
+#stop-nav-bar-overflow-button[animate]
+  > #nav-bar-overflow-button:not([displaystop]) {
   transition: 300ms !important;
   /* Animate icon showing */
   opacity: 1 !important;
@@ -282,7 +299,6 @@
  *    \____/|_|\__,_|\___|_.__/ \__,_|_|  |___/
  *                                             
  **********************************************/
-
 
 /* Hide all sidebar headers (bookmarks, history, etc) */
 #sidebar-header {
@@ -319,9 +335,7 @@
 }
 
 vbox#sidebar-box.chromeclass-extrachrome {
-
   border-style: none !important;
-
 }
 
 /* Autohide Sidebar */
@@ -333,12 +347,14 @@ vbox#sidebar-box.chromeclass-extrachrome {
 }
 
 /* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]+#sidebar-splitter {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  + #sidebar-splitter {
   display: none !important;
 }
 
 /* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  #sidebar-header {
   visibility: collapse;
 }
 
@@ -348,7 +364,9 @@ vbox#sidebar-box.chromeclass-extrachrome {
   --wide-tab-width: 200px;
 }
 
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+#sidebar-box:not(
+    [sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  ) {
   min-width: var(--wide-tab-width) !important;
   max-width: none !important;
 }
@@ -358,6 +376,7 @@ vbox#sidebar-box.chromeclass-extrachrome {
   transition: all 300ms !important;
   min-width: var(--thin-tab-width) !important;
   max-width: var(--thin-tab-width) !important;
+  z-index: calc(var(--browser-area-z-index-tabbox, 10000) + 1) !important;
 }
 
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
@@ -366,10 +385,10 @@ vbox#sidebar-box.chromeclass-extrachrome {
   max-width: var(--wide-tab-width) !important;
 
   /* Negative right-margin to keep page from being pushed to the side. */
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+  margin-right: calc(
+    (var(--wide-tab-width) - var(--thin-tab-width)) * -1
+  ) !important;
 }
-
-
 
 /********************************************
  *    ______ _           _ _                
@@ -381,12 +400,10 @@ vbox#sidebar-box.chromeclass-extrachrome {
  *                                          
  ********************************************/
 
-
 /* change color of findbar */
-.browserContainer>findbar {
+.browserContainer > findbar {
   background-color: var(--color0) !important;
   border: none !important;
-
 }
 
 /* color the text of the findbar */
@@ -394,7 +411,6 @@ vbox#sidebar-box.chromeclass-extrachrome {
   color: var(--color4) !important;
   background: var(--color0) !important;
   border: none !important;
-
 }
 
 .findbar-find-status {
@@ -425,7 +441,6 @@ vbox#sidebar-box.chromeclass-extrachrome {
   border: none !important;
 }
 
-
 /**************************************************************************************
  *     _   _                 _                                ___  ___                 
  *    | | | |               | |                               |  \/  |                 
@@ -437,11 +452,10 @@ vbox#sidebar-box.chromeclass-extrachrome {
  *                                           |___/                                     
  **************************************************************************************/
 
-
 /* Color hamburger menu */
 #appMenu-mainView {
   background-color: var(--color0) !important;
-  color: var(--color15)
+  color: var(--color15);
 }
 
 /* Remove the "Sign in to sync" from top of photon hamburger menu. */
@@ -485,7 +499,7 @@ vbox#sidebar-box.chromeclass-extrachrome {
 }
 
 /* remove separators */
-#widget-overflow-mainView>.panel-subview-body>toolbarseparator,
+#widget-overflow-mainView > .panel-subview-body > toolbarseparator,
 .PanelUI-subView menuseparator,
 .PanelUI-subView toolbarseparator,
 .cui-widget-panelview menuseparator,
@@ -498,7 +512,6 @@ vbox#sidebar-box.chromeclass-extrachrome {
   padding: 0;
 }
 
-
 /**************************
  *    ___  ____          
  *    |  \/  (_)         
@@ -508,7 +521,6 @@ vbox#sidebar-box.chromeclass-extrachrome {
  *    \_|  |_/_|___/\___|
  *                       
  **************************/
-
 
 /* Make loading background when opening new tab not be bright white*/
 .tabbrowser-tabbox {
@@ -522,6 +534,11 @@ vbox#sidebar-box.chromeclass-extrachrome {
   overflow-x: hidden;
 }
 
+* {
+  scrollbar-color: #1e90ff red !important;
+  scrollbar-width: thin !important;
+}
+
 /* Remove "Send Page to Device", "Send Link to Device", "Send Tab to Device" from context menu. */
 #context-sendpagetodevice,
 #context-sep-sendpagetodevice,
@@ -532,9 +549,8 @@ vbox#sidebar-box.chromeclass-extrachrome {
   display: none !important;
 }
 
-
 #navigator-toolbox {
-  --tabs-border-color: rgba(0, 0, 0, .0) !important;
+  --tabs-border-color: rgba(0, 0, 0, 0) !important;
 }
 
 :root:-moz-lwtheme-brighttext {
@@ -543,10 +559,8 @@ vbox#sidebar-box.chromeclass-extrachrome {
 }
 
 :root[lwt-popup-brighttext] {
-
   --urlbar-popup-url-color: var(--color4) !important;
   --urlbar-popup-action-color: var(--color2) !important;
-
 }
 
 .titlebar-button {
@@ -554,14 +568,11 @@ vbox#sidebar-box.chromeclass-extrachrome {
   stroke: #e8e6ca !important;
   padding: 0px 10px !important;
   margin-top: 10px !important;
-
 }
 
-.titlebar-button>.toolbarbutton-icon {
+.titlebar-button > .toolbarbutton-icon {
   width: 10px !important;
   height: 10px !important;
-
-
 }
 
 .toolbarbutton-animatable-box,
@@ -591,17 +602,18 @@ vbox#sidebar-box.chromeclass-extrachrome {
 }
 
 toolbar#nav-bar::after {
-  width: calc(var(--uc-window-control-width) + var(--uc-window-drag-space-width, 0px))
+  width: calc(
+    var(--uc-window-control-width) + var(--uc-window-drag-space-width, 0px)
+  );
 }
 
 :root:not([uidensity="compact"]) {
-  --uc-toolbar-height: 38px
+  --uc-toolbar-height: 38px;
 }
 
 #TabsToolbar {
-  visibility: collapse !important
+  visibility: collapse !important;
 }
-
 
 /* Shrink sidebar until hovered, when using Tree Style Tab. */
 :root {
@@ -610,18 +622,21 @@ toolbar#nav-bar::after {
 }
 
 /* Hide splitter, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]+#sidebar-splitter {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  + #sidebar-splitter {
   display: none !important;
 }
 
 /* Hide sidebar header, when using Tree Style Tab. */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  #sidebar-header {
   visibility: collapse;
   transition: all 300ms !important;
-
 }
 
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+#sidebar-box:not(
+    [sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
+  ) {
   min-width: var(--wide-tab-width) !important;
   max-width: none !important;
   transition: all 300ms !important;
@@ -632,23 +647,22 @@ toolbar#nav-bar::after {
   transition: all 300ms !important;
   min-width: var(--thin-tab-width) !important;
   max-width: var(--thin-tab-width) !important;
-
 }
 
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
   transition: all 300ms !important;
   min-width: var(--wide-tab-width) !important;
   max-width: var(--thin-tab-width) !important;
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+  margin-right: calc(
+    (var(--wide-tab-width) - var(--thin-tab-width)) * -1
+  ) !important;
   z-index: 1;
-
 }
 
-
-#toolbar-menubar[inactive]>#menubar-items {
+#toolbar-menubar[inactive] > #menubar-items {
   opacity: 0;
   pointer-events: none;
-  margin-left: var(--uc-window-drag-space-width, 0px)
+  margin-left: var(--uc-window-drag-space-width, 0px);
 }
 
 #toolbar-menubar {
@@ -661,9 +675,14 @@ toolbar#nav-bar::after {
   -moz-box-flex: 1;
   background-color: var(--toolbar-bgcolor, --toolbar-non-lwt-bgcolor);
   background-clip: padding-box;
-  border-image: linear-gradient(to left, transparent, var(--toolbar-bgcolor, --toolbar-non-lwt-bgcolor) 30px) 20 / 30px
+  border-image: linear-gradient(
+      to left,
+      transparent,
+      var(--toolbar-bgcolor, --toolbar-non-lwt-bgcolor) 30px
+    )
+    20 / 30px;
 }
 
 #toolbar-menubar:not([inactive]) {
-  z-index: 2
+  z-index: 2;
 }

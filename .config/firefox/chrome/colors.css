@@ -66,6 +66,7 @@
     --tab-background-color: var(--tone-9)!important;
     --tab-color: var(--in-content-selected-text);
     --tab-line-selected-color: var(--accent-2)!important;
+    --focus-outline-color: var(--accent-1)!important;
 
     --theme-highlight-blue: var(--color4);
     --theme-highlight-bluegrey: var(--color8:);

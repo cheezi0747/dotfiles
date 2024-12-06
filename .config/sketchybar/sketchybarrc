@@ -10,6 +10,10 @@ source "$CONFIG_DIR/icons.sh"  # Loads all defined icons
 ITEM_DIR="$CONFIG_DIR/items"            # Directory where the items are configured
 export PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
 
+# aerospace setting
+AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
 # Setting up and starting the helper process
 HELPER=git.felix.helper
 killall helper
@@ -53,8 +57,6 @@ background_defaults=(
 	background.padding_left=5
 	background.padding_right=5
 )
-
-
 
 popup_defaults=(
 	popup.height=30

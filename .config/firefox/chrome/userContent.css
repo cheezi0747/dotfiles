@@ -36,7 +36,7 @@ popup > menu > menupopup {
   padding: 0!important
 }
 menu.subviewbutton > .menu-right {
-  fill: #000!important
+  fill: var(--color0)!important
 }
 .menu-right {
   filter: invert(95%)!important
@@ -1452,10 +1452,11 @@ toolbarbutton#toggle-button--redirectoreinaregilssoncom-redirector[image*=disabl
   }
   #create:not(:disabled) {
     background-color: var(--theme-highlight-yellow)!important;
-    color: #000!important
+    color: var(--color0)!important
   }
   body.preview #preview {
     background-color: var(--theme-highlight-blue)!important;
-    color: #000!important
+    color: var(--color0)!important
   }
 }
+

@@ -2,7 +2,6 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-
 # Unload the macOS WindowManager process
 launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
 
@@ -38,17 +37,21 @@ yabai -m config external_bar all:40:0 \
     right_padding 10 \
     window_gap 8
 
-# Exclude problematic apps from being managed:
+# Exclude problematic apps from being managed
 yabai -m rule --add app="MGJavaClientMain" manage=off
 yabai -m rule --add app="^(LuLu|Vimac|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="Firefox" app="^Firefox$" title="^(General|Home|Search|Library|Extension|Privacy|Security|Extensions|Downloads|Applications|Fonts|Colors|Languages|Network|Certificates|Advanced)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
-
+yabai -m rule --add label="Firefox Bitwarden" app="^Firefox$" title="^Extension: \(Bitwarden Password Manager\) -.*$" manage=off
 # IntelliJ
-yabai -m rule --add app="^IntelliJ IDEA$" manage=off
-yabai -m rule --add app="^IntelliJ IDEA$" title="( – )" space=2 manage=on
+JB_Apps='^(CLion|PyCharm|IntelliJ IDEA)$'
+yabai -m rule --add app="${JB_Apps}" manage=off
+# If `Open last project when launch` is checked, add this rule. And make sure `always show project path` is also checked.
+yabai -m rule --add app="${JB_Apps}" title=".*\[.*\].*" manage=on space=2
+yabai -m rule --add app="${JB_Apps}" title="^$" manage=on space=2
 
 yabai -m config layout bsp
 
