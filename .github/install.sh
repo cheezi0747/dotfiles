@@ -1,22 +1,31 @@
 #!/bin/bash
 
-# Faily immediately if a command exits with a non-zero status
+# Fail immediately if a command exits with a non-zero status
 set -e
 
 # Clone the dotfiles repository
 clone_dotfiles_repo() {
     echo "Cloning dotfiles repository..."
+
+    # Clone if it doesn't already exist
     if [ ! -d "$HOME/.dotfiles" ]; then
         git clone --bare https://github.com/cheezi0747/dotfiles.git $HOME/.dotfiles
-        git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-        git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
-        echo "Dotfiles repository cloned and checked out."
-        # Set up Zsh configuration directory after cloning
     else
-        echo "Dotfiles already cloned."
+        echo "Dotfiles repo already cloned. Skipping clone step..."
     fi
+
+    # Checkout with force to overwrite existing files
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
+
+    # Hide untracked files
+    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+
+    echo "Dotfiles repository cloned and checked out."
+
+    # Set up Zsh configuration directory after cloning
     echo "Setting up Zsh configuration directory..."
     echo export ZDOTDIR=~/.config/zsh | sudo tee -a /etc/zshenv
+    export ZDOTDIR=~/.config/zsh
 }
 
 # Install xCode CLI tools
@@ -45,6 +54,7 @@ install_oh_my_zsh() {
     echo "Installing Oh My Zsh..."
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         ZSH="$HOME/.config/zsh/oh-my-zsh" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        mv $HOME/.config/zsh/.zshrc.pre-oh-my-zsh $HOME/.config/zsh/.zshrc
     else
         echo "Oh My Zsh already installed."
     fi
@@ -84,10 +94,6 @@ install_oh_my_zsh() {
     else
         echo "ZSH Autocomplete already installed."
     fi
-
-    # Reload Zsh configuration
-    # echo "Reloading Zsh configuration..."
-    # source $HOME/.config/zsh/.zshrc
 }
 
 # Install Brew
@@ -95,8 +101,6 @@ install_brew() {
     echo "Installing Homebrew..."
     if ! command -v brew &>/dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.config/zsh/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
     else
         echo "Homebrew already installed."
     fi
@@ -145,10 +149,6 @@ set_macos_defaults() {
     defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
     defaults write com.apple.finder ShowStatusBar -bool false
     defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool YES
-    defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-    defaults write com.apple.Safari IncludeDevelopMenu -bool true
-    defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-    defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
     defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
     defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
     echo "macOS defaults have been set."
@@ -166,9 +166,16 @@ setup_spicetify() {
     $HOME/.config/spicetify/spicetify.sh
 }
 
+# Setup Visual Studio Code
+setup_code() {
+    echo "Setting up Visual Studio Code"
+    cat $HOME/.config/vscode/extensions_list.txt | xargs -n 1 code --install-extension
+}
+
 # Install Homebrew Packages
 install_homebrew_packages() {
     echo "Installing Homebrew packages"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     brew bundle --file $HOME/.config/homebrew/Brewfile
 }
 
