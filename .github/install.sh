@@ -6,7 +6,7 @@ set -e
 # Clone the dotfiles repository
 clone_dotfiles_repo() {
     echo "Cloning dotfiles repository..."
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    if [ ! -d "$HOME/.dotfiles" ]; then
         git clone --bare https://github.com/cheezi0747/dotfiles.git $HOME/.dotfiles
         git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
         git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
@@ -76,9 +76,18 @@ install_oh_my_zsh() {
         echo "ZSH Syntax Highlighting already installed."
     fi
 
+    # Install ZSH Autocomplete
+    echo "Installing ZSH Autocomplete..."
+    local autocomplete_dir="$HOME/.config/zsh/oh-my-zsh/custom/plugins/zsh-autocomplete"
+    if [ ! -d "$autocomplete_dir" ]; then
+        git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "$autocomplete_dir"
+    else
+        echo "ZSH Autocomplete already installed."
+    fi
+
     # Reload Zsh configuration
-    echo "Reloading Zsh configuration..."
-    source $HOME/.config/zsh/.zshrc
+    # echo "Reloading Zsh configuration..."
+    # source $HOME/.config/zsh/.zshrc
 }
 
 # Install Brew
@@ -86,6 +95,8 @@ install_brew() {
     echo "Installing Homebrew..."
     if ! command -v brew &>/dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.config/zsh/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
     else
         echo "Homebrew already installed."
     fi
