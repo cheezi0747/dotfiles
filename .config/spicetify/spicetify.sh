@@ -1,5 +1,3 @@
-# Make sure Spotify is installed and opened at least once
-open -a Spotify
 # Install spicetify
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
 
