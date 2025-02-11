@@ -13,6 +13,7 @@ export ZSH="$HOME/.config/zsh/oh-my-zsh"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/spicetify:$HOME/.local/gem/ruby/2.6.0/bin"
 export PATH="$PATH:$HOME/.local/jetbrains/scripts:$HOME/.local/bin"
 export PATH="$PATH:/Users/cheezi/code/scripts/changelog:$HOME/.config/zsh/plugins/swissgit:$HOME/code/scripts"
+export PATH=$HOME/.docker/cli-plugins:$PATH
 export VIMINIT='source $HOME/.config/vim/vimrc'
 export GEM_HOME="$HOME/.local/share/gem"
 export NPM_CONFIG_PREFIX="$HOME/.local/share/npm"
@@ -23,7 +24,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 
 # Set java home to Java 21 if available
 if command -v java &>/dev/null; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+    export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 fi
 
 # Zsh Options
@@ -46,9 +47,11 @@ source $ZSH/oh-my-zsh.sh
 alias apidocs='http --download GET :8080/api-docs.yaml Accept:application/vnd.oai.openapi;charset=UTF-8'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias reloadzsh='source ~/.config/zsh/.zshrc'
-alias clear='printf '\''\33c\e[3J'\'
+#alias clear='printf '\''\33c\e[3J'\'
 alias cleanfiles='rm ~/Downloads/connect\(*\).rdp ~/Downloads/Personal-xlinsjo\(*\).jnlp'
 alias movetoshare="$HOME/.config/zsh/plugins/move_to_share.zsh"
+alias sas='mvn clean dept44-formatting:apply generate-sources'
+alias fmt='mvn clean dept44-formatting:apply'
 compdef '_git' dotfiles
 
 # Custom Scripts
@@ -56,12 +59,29 @@ source $HOME/.config/zsh/plugins/catppuccin_frappe-zsh-syntax-highlighting.zsh
 source $HOME/.config/zsh/plugins/.fzf.zsh
 [[ -f ~/.config/zsh/p10k.zsh ]] && source ~/.config/zsh/p10k.zsh
 
-# ZPlug
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
-source $ZPLUG_HOME/init.zsh
-zplug 'yuhonas/zsh-aliases-lsd'
-zplug check --verbose || zplug install
-zplug load
+# ZPlug installation check and setup
+if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS path
+    export ZPLUG_HOME=/opt/homebrew/opt/zplug
+elif [[ "$(uname)" == "Linux" ]]; then
+    # Ubuntu path
+    export ZPLUG_HOME=$HOME/.zplug
+    # Install zplug if not present
+    if [[ ! -d $ZPLUG_HOME ]]; then
+        echo "Installing zplug..."
+        git clone https://github.com/zplug/zplug $ZPLUG_HOME
+    fi
+fi
+
+# Source zplug only if it exists
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+    source $ZPLUG_HOME/init.zsh
+    zplug 'yuhonas/zsh-aliases-lsd'
+    zplug check --verbose || zplug install
+    zplug load
+else
+    echo "Warning: zplug not found. Please install zplug first."
+fi
 
 # Homebrew completions
 if type brew &>/dev/null; then
