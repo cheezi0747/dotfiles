@@ -56,7 +56,7 @@ compdef '_git' dotfiles
 
 # Custom Scripts
 source $HOME/.config/zsh/plugins/catppuccin_frappe-zsh-syntax-highlighting.zsh
-source $HOME/.config/zsh/plugins/.fzf.zsh
+#source $HOME/.config/zsh/plugins/.fzf.zsh
 [[ -f ~/.config/zsh/p10k.zsh ]] && source ~/.config/zsh/p10k.zsh
 
 # ZPlug installation check and setup
